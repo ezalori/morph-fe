@@ -70,6 +70,14 @@ app.get('/api/table/columns', (req, res) => {
   })
 })
 
+app.post('/api/table/delete', (req, res) => {
+  res.json({
+    payload: {
+      message: 'ok',
+    },
+  })
+})
+
 const server = app.listen(8081, () => {
   console.log('mock server listening on port ' + server.address().port)
 })

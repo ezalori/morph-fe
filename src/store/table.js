@@ -1,10 +1,5 @@
 import _ from 'lodash'
-import {
-  queryTableList,
-  queryTable,
-  queryColumns,
-  saveTable,
-} from '@/services/table'
+import * as service from '@/services/table'
 
 const types = {
   SAVE: 'save',
@@ -21,7 +16,7 @@ export default {
 
   actions: {
     async fetchTableList({ commit }, payload) {
-      let response = await queryTableList(payload)
+      let response = await service.queryTableList(payload)
       if (response && response.payload) {
         commit(types.SAVE, {
           tableList: response.payload.tables,
@@ -30,7 +25,7 @@ export default {
     },
 
     async fetchTable({ commit }, payload) {
-      let response = await queryTable(payload)
+      let response = await service.queryTable(payload)
       if (response && response.payload) {
         commit(types.SAVE, {
           table: response.payload.table,
@@ -40,7 +35,7 @@ export default {
     },
 
     async fetchColumns({ commit }, payload) {
-      let response = await queryColumns(payload)
+      let response = await service.queryColumns(payload)
       if (response && response.payload) {
         commit(types.SAVE, {
           columnList: response.payload.columns,
@@ -49,7 +44,7 @@ export default {
     },
 
     async save({ commit }, payload) {
-      let response = await saveTable(payload)
+      let response = await service.saveTable(payload)
       if (response && response.payload) {
         commit(types.SAVE, {
           table: {
@@ -58,6 +53,10 @@ export default {
           },
         })
       }
+    },
+
+    async deleteTable({ commit }, payload) {
+      await service.deleteTable(payload)
     },
   },
 

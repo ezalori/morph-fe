@@ -15,3 +15,7 @@ export async function queryColumns(params) {
 export async function saveTable(data) {
   return request('/table/save', { data })
 }
+
+export async function deleteTable(data) {
+  return request('/table/delete', { data })
+}

@@ -15,8 +15,8 @@
       <el-table-column prop="createdAt" label="Create Time" min-width="180"></el-table-column>
       <el-table-column label="Operations" min-width="120">
         <template slot-scope="scope">
-          <el-button type="text" @click="editTable(scope.row)">Edit</el-button>
-          <el-button type="text">Delete</el-button>
+          <el-button type="text" @click="onEdit(scope.row)">Edit</el-button>
+          <el-button type="text" @click="onDelete(scope.row)">Delete</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -40,7 +40,7 @@
 
 <script>
 import _ from 'lodash'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'TableList',
@@ -52,16 +52,34 @@ export default {
   },
 
   mounted () {
-    this.$store.dispatch('table/fetchTableList')
+    this.fetchTableList()
   },
 
   methods: {
-    editTable (table) {
+    ...mapActions('table', [
+      'fetchTableList',
+      'deleteTable',
+    ]),
+
+    onEdit(table) {
       this.$router.push({
         path: '/table/edit',
-        query: _.pick(table, ['id'])
+        query: _.pick(table, ['id']),
       })
-    }
-  }
+    },
+
+    onDelete(table) {
+      this.$confirm(`Are you sure to delete ${table.targetTable}?`, 'Warning', {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
+        type: 'warning'
+      }).then(() => {
+        let payload = _.pick(table, ['id'])
+        this.deleteTable(payload).then(() => {
+          this.fetchTableList()
+        })
+      }).catch(_.noop)
+    },
+  },
 }
 </script>
