@@ -64,11 +64,11 @@
             </td>
           </tr>
         </table>
-        <el-button size="mini" @click="onImportColumns()">Import Columns</el-button>
+        <el-button size="mini" @click="onImportColumns">Import Columns</el-button>
       </el-form-item>
       <el-form-item style="padding-top: 10px;">
-        <el-button type="primary" @click="onSubmit()">Submit</el-button>
-        <el-button @click="onCancel()">Cancel</el-button>
+        <el-button type="primary" @click="onSubmit">Submit</el-button>
+        <el-button @click="onCancel">Cancel</el-button>
       </el-form-item>
     </el-form>
   </div>

@@ -12,20 +12,11 @@ function getTableList(req, res) {
     updatedAt: '2018-08-18 15:53:01',
   }]
 
-  res.json({
-    payload: {
-      tables,
-    },
-  })
+  res.json({ tables })
 }
 
 function saveTable(req, res) {
-  res.json({
-    code: 200,
-    payload: {
-      id: 1,
-    },
-  })
+  res.json({ id: 1 })
 }
 
 function getTable(req, res) {
@@ -42,30 +33,17 @@ function getTable(req, res) {
 
   let columns = ['id', 'nickname', 'create_day']
 
-  res.json({
-    payload: {
-      table,
-      columns,
-    }
-  })
+  res.json({ table, columns })
 }
 
 function getTableColumns(req, res) {
   let columns = ['id', 'nickname', 'create_day']
 
-  res.json({
-    payload: {
-      columns,
-    }
-  })
+  res.json({ columns })
 }
 
 function deleteTable(req, res) {
-  res.json({
-    payload: {
-      message: 'ok',
-    },
-  })
+  res.json({ status: 'ok' })
 }
 
 module.exports = {
