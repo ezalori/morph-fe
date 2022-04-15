@@ -15,8 +15,8 @@ export default {
   },
 
   actions: {
-    async fetchTableList({ commit }, payload) {
-      let response = await service.queryTableList(payload)
+    async getTableList({ commit }, payload) {
+      let response = await service.getTableList(payload)
       if (response && response.payload) {
         commit(types.SAVE, {
           tableList: response.payload.tables,
@@ -24,8 +24,8 @@ export default {
       }
     },
 
-    async fetchTable({ commit }, payload) {
-      let response = await service.queryTable(payload)
+    async getTable({ commit }, payload) {
+      let response = await service.getTable(payload)
       if (response && response.payload) {
         commit(types.SAVE, {
           table: response.payload.table,
@@ -34,8 +34,8 @@ export default {
       }
     },
 
-    async fetchColumns({ commit }, payload) {
-      let response = await service.queryColumns(payload)
+    async saveTableColumns({ commit }, payload) {
+      let response = await service.getTableColumns(payload)
       if (response && response.payload) {
         commit(types.SAVE, {
           columnList: response.payload.columns,
@@ -43,7 +43,7 @@ export default {
       }
     },
 
-    async save({ commit }, payload) {
+    async saveTable({ commit }, payload) {
       let response = await service.saveTable(payload)
       if (response && response.payload) {
         commit(types.SAVE, {
