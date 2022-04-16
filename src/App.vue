@@ -4,10 +4,8 @@ import { Sort, Bell } from '@element-plus/icons-vue'
 </script>
 
 <template>
-  <el-container style="height: 100vh;">
-    <el-header class="app-header">
-      <img src="@/assets/logo.svg" />Morph
-    </el-header>
+  <el-container style="height: 100vh">
+    <el-header class="app-header"><img src="@/assets/logo.svg" />Morph</el-header>
     <el-container>
       <el-aside width="240px">
         <el-menu :router="true" default-active="/table/list">
@@ -30,8 +28,8 @@ import { Sort, Bell } from '@element-plus/icons-vue'
 @import '@/assets/base.css';
 
 #app {
-  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
-    'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+    '微软雅黑', Arial, sans-serif;
   font-size: var(--el-font-size-base);
   color: var(--el-text-color-regular);
 }

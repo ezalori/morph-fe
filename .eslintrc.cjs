@@ -18,6 +18,7 @@ module.exports = {
       extends: ['plugin:cypress/recommended'],
     },
   ],
+  ignorePatterns: ['auto-imports.d.ts', 'components.d.ts'],
   rules: {
     'vue/multi-word-component-names': 'off',
   },
