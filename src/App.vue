@@ -8,7 +8,7 @@ import { Sort, Bell } from '@element-plus/icons-vue'
     <el-header class="app-header"><img src="@/assets/logo.svg" />Morph</el-header>
     <el-container>
       <el-aside width="240px">
-        <el-menu :router="true" default-active="/table/list">
+        <el-menu :router="true" default-active="/table/list" style="height: 100%">
           <el-menu-item index="/table/list">
             <el-icon><Sort /></el-icon>
             <span>ETL</span>

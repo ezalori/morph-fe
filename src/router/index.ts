@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import TableList from '@/views/table/List.vue'
+import TableEdit from '@/views/table/Edit.vue'
 import Monitor from '@/views/Monitor.vue'
 
 const router = createRouter({
@@ -8,6 +9,10 @@ const router = createRouter({
     {
       path: '/table/list',
       component: TableList,
+    },
+    {
+      path: '/table/edit',
+      component: TableEdit,
     },
     {
       path: '/monitor',
