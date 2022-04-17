@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { ElMessage } from 'element-plus'
 import { useTableStore } from '@/stores/table'
 
 const router = useRouter()
@@ -10,15 +11,22 @@ onMounted(() => {
   store.getTableList()
 })
 
-function onNew() {
+function createTable() {
   router.push({ path: '/table/edit' })
+}
+
+function deleteTable(id: number) {
+  store.deleteTable({ id }).then(() => {
+    ElMessage.success('Table is deleted.')
+    store.getTableList()
+  })
 }
 </script>
 
 <template>
   <div class="page-table-list">
     <div class="title-button">
-      <el-button type="primary" size="small" @click="onNew">New</el-button>
+      <el-button type="primary" size="small" @click="createTable">New</el-button>
     </div>
     <div class="page-title">Tables</div>
 
@@ -29,9 +37,13 @@ function onNew() {
       <el-table-column prop="targetTable" label="Target Table" min-width="150"></el-table-column>
       <el-table-column prop="createdAt" label="Create Time" min-width="180"></el-table-column>
       <el-table-column label="Operations" min-width="120">
-        <template #default>
+        <template #default="scope">
           <el-button type="text">Edit</el-button>
-          <el-button type="text">Delete</el-button>
+          <el-popconfirm title="Are you sure to delete this?" @confirm="deleteTable(scope.row.id)">
+            <template #reference>
+              <el-button type="text">Delete</el-button>
+            </template>
+          </el-popconfirm>
         </template>
       </el-table-column>
     </el-table>

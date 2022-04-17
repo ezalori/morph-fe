@@ -2,7 +2,6 @@
 import _ from 'lodash'
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import 'element-plus/es/components/message/style/css'
 import { ElMessage } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
 import { useTableStore } from '@/stores/table'
@@ -37,7 +36,7 @@ const rules: FormRules = {
   columnList: [
     {
       validator: (rule, value, callback) => {
-        const selected = _(columnOptions).filter('extract').size()
+        const selected = _(columnOptions.value).filter('extract').size()
         if (selected === 0) {
           callback(new Error('Column list cannot be empty.'))
         } else {
@@ -83,7 +82,22 @@ function submit() {
     if (!valid) {
       return
     }
-    console.log(tableForm)
+
+    let selected = _(columnOptions.value).filter('extract').map('name').value()
+    if (selected.length === store.columnList.length) {
+      selected = []
+    }
+    tableForm.columnList = _.join(selected, ',')
+
+    store.saveTable(tableForm).then(
+      () => {
+        tableForm.id = store.table.id
+        ElMessage.success('Table is saved.')
+      },
+      (error) => {
+        ElMessage.error(String(error))
+      }
+    )
   })
 }
 

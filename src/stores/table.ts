@@ -5,6 +5,9 @@ export const useTableStore = defineStore('table', {
   state: () => ({
     tableList: [],
     columnList: [],
+    table: {
+      id: '',
+    },
   }),
 
   actions: {
@@ -16,6 +19,23 @@ export const useTableStore = defineStore('table', {
     async getTableColumns(params: object) {
       const response = await service.getTableColumns(params)
       this.columnList = response.columns
+    },
+
+    async getTable(params: object) {
+      const response = await service.getTable(params)
+      this.table = response.table
+    },
+
+    async saveTable(data: object) {
+      const response = await service.saveTable(data)
+      this.table = {
+        ...data,
+        id: response.id,
+      }
+    },
+
+    async deleteTable(data: object) {
+      await service.deleteTable(data)
     },
   },
 })
