@@ -1,9 +1,19 @@
 <script setup lang="ts">
+import _ from 'lodash'
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import type { FormInstance } from 'element-plus'
+import 'element-plus/es/components/message/style/css'
+import { ElMessage } from 'element-plus'
+import type { FormInstance, FormRules } from 'element-plus'
+import { useTableStore } from '@/stores/table'
+
+interface ColumnOption {
+  name: string
+  extract: boolean
+}
 
 const router = useRouter()
+const store = useTableStore()
 
 const tableFormRef = ref<FormInstance>()
 const tableForm = reactive({
@@ -17,13 +27,25 @@ const tableForm = reactive({
   columnList: '',
 })
 
-const rules = {
+const rules: FormRules = {
   sourceInstance: [{ required: true, message: 'Source instance is required' }],
   sourceDatabase: [{ required: true, message: 'Source database is required' }],
   sourceTable: [{ required: true, message: 'Source table is required' }],
   targetInstance: [{ required: true, message: 'Target instance is required' }],
   targetDatabase: [{ required: true, message: 'Target database is required' }],
   targetTable: [{ required: true, message: 'Target table is required' }],
+  columnList: [
+    {
+      validator: (rule, value, callback) => {
+        const selected = _(columnOptions).filter('extract').size()
+        if (selected === 0) {
+          callback(new Error('Column list cannot be empty.'))
+        } else {
+          callback()
+        }
+      },
+    },
+  ],
 }
 
 const instanceOptions = ref([
@@ -31,12 +53,32 @@ const instanceOptions = ref([
   { value: 2, label: 'zhuanqian' },
 ])
 
-const columnOptions = ref([
-  { name: 'id', extract: true },
-  { name: 'username', extract: false },
-])
+const columnOptions = ref<ColumnOption[]>([])
 
-function onSubmit() {
+function importColumns() {
+  const form = tableFormRef.value
+  if (!form) {
+    return
+  }
+
+  const props = ['sourceInstance', 'sourceDatabase', 'sourceTable']
+  form.validateField(props, (isValid) => {
+    if (!isValid) {
+      return
+    }
+
+    const params = _.pick(tableForm, props)
+    store.getTableColumns(params).then(() => {
+      if (_.isEmpty(store.columnList)) {
+        ElMessage.error('Table not found')
+        return
+      }
+      refreshColumnOptions()
+    })
+  })
+}
+
+function submit() {
   tableFormRef.value?.validate((valid) => {
     if (!valid) {
       return
@@ -45,8 +87,16 @@ function onSubmit() {
   })
 }
 
-function onCancel() {
+function cancel() {
   router.push({ path: '/table/list' })
+}
+
+function refreshColumnOptions() {
+  let selected = _.filter(_.split(tableForm.columnList, ','))
+  columnOptions.value = _.map(store.columnList, (name) => {
+    let extract = _.isEmpty(selected) ? true : _.includes(selected, name)
+    return { name, extract }
+  })
 }
 </script>
 
@@ -123,11 +173,11 @@ function onCancel() {
             </td>
           </tr>
         </table>
-        <el-button size="small">Import Columns</el-button>
+        <el-button size="small" @click="importColumns">Import Columns</el-button>
       </el-form-item>
       <el-form-item style="padding-top: 10px">
-        <el-button type="primary" @click="onSubmit">Submit</el-button>
-        <el-button @click="onCancel">Cancel</el-button>
+        <el-button type="primary" @click="submit">Submit</el-button>
+        <el-button @click="cancel">Cancel</el-button>
       </el-form-item>
     </el-form>
   </div>

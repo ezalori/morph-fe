@@ -1,27 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { useTableStore } from '@/stores/table'
 
 const router = useRouter()
+const store = useTableStore()
+
+onMounted(() => {
+  store.getTableList()
+})
 
 function onNew() {
   router.push({ path: '/table/edit' })
 }
-
-const tableList = ref([
-  {
-    id: 1,
-    sourceInstance: 2,
-    sourceDatabase: 'zhuanqian',
-    sourceTable: 'user',
-    targetInstance: 1,
-    targetDatabase: 'dw_stage',
-    targetTable: 'ds_user',
-    columnList: 'id,create_day',
-    createdAt: '2018-08-18 15:53:01',
-    updatedAt: '2018-08-18 15:53:01',
-  },
-])
 </script>
 
 <template>
@@ -31,7 +22,7 @@ const tableList = ref([
     </div>
     <div class="page-title">Tables</div>
 
-    <el-table :data="tableList">
+    <el-table :data="store.tableList">
       <el-table-column prop="id" label="#" min-width="50"></el-table-column>
       <el-table-column prop="sourceDatabase" label="Source DB" min-width="150"></el-table-column>
       <el-table-column prop="sourceTable" label="Source Table" min-width="150"></el-table-column>
