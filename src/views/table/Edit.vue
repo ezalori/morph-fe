@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import _ from 'lodash'
-import { reactive, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { onMounted, reactive, ref } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
 import { useTableStore } from '@/stores/table'
@@ -12,6 +12,7 @@ interface ColumnOption {
 }
 
 const router = useRouter()
+const route = useRoute()
 const store = useTableStore()
 
 const tableFormRef = ref<FormInstance>()
@@ -53,6 +54,16 @@ const instanceOptions = ref([
 ])
 
 const columnOptions = ref<ColumnOption[]>([])
+
+onMounted(() => {
+  if (route.query.id) {
+    const params = { id: route.query.id }
+    store.getTable(params).then(() => {
+      _.assign(tableForm, store.table)
+      refreshColumnOptions()
+    })
+  }
+})
 
 function importColumns() {
   const form = tableFormRef.value

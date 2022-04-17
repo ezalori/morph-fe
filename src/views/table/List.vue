@@ -15,6 +15,13 @@ function createTable() {
   router.push({ path: '/table/edit' })
 }
 
+function editTable(id: number) {
+  router.push({
+    path: '/table/edit',
+    query: { id },
+  })
+}
+
 function deleteTable(id: number) {
   store.deleteTable({ id }).then(() => {
     ElMessage.success('Table is deleted.')
@@ -38,7 +45,7 @@ function deleteTable(id: number) {
       <el-table-column prop="createdAt" label="Create Time" min-width="180"></el-table-column>
       <el-table-column label="Operations" min-width="120">
         <template #default="scope">
-          <el-button type="text">Edit</el-button>
+          <el-button type="text" @click="editTable(scope.row.id)">Edit</el-button>
           <el-popconfirm title="Are you sure to delete this?" @confirm="deleteTable(scope.row.id)">
             <template #reference>
               <el-button type="text">Delete</el-button>

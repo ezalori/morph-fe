@@ -24,6 +24,7 @@ export const useTableStore = defineStore('table', {
     async getTable(params: object) {
       const response = await service.getTable(params)
       this.table = response.table
+      this.columnList = response.columns
     },
 
     async saveTable(data: object) {
