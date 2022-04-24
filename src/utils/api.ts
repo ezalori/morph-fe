@@ -1,45 +1,6 @@
 import qs from 'qs'
 import { ElNotification } from 'element-plus'
 
-interface ConfigOption {
-  params?: object
-  data?: object
-  json?: object
-}
-
-function parseConfig(config?: ConfigOption): RequestInit {
-  let options: RequestInit
-
-  if (config?.data) {
-    options = {
-      method: 'POST',
-      body: qs.stringify(config.data),
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    }
-  } else if (config?.json) {
-    options = {
-      method: 'POST',
-      body: JSON.stringify(config.json),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }
-  } else {
-    options = {
-      method: 'GET',
-    }
-  }
-
-  options.headers = {
-    ...options.headers,
-    Authorization: 'Basic ' + window.btoa('admin:password'),
-  }
-
-  return options
-}
-
 function showError(message: string) {
   ElNotification({
     type: 'error',
@@ -67,16 +28,17 @@ async function handleBadRequest(response: Response) {
 }
 
 // http://shzhangji.com/blog/2018/04/07/error-handling-in-restful-api/
-async function request(url: string, config?: ConfigOption) {
+async function request(url: string, config: RequestInit) {
   url = '/api' + url
-  if (config?.params) {
-    url += '?' + qs.stringify(config.params)
+
+  config.headers = {
+    ...config.headers,
+    Authorization: 'Basic ' + window.btoa('admin:password'),
   }
 
-  const options = parseConfig(config)
   let response
   try {
-    response = await fetch(url, options)
+    response = await fetch(url, config)
   } catch (error) {
     showError(getErrorMessage(error))
     throw error
@@ -103,24 +65,49 @@ async function request(url: string, config?: ConfigOption) {
 }
 
 async function get(url: string, params?: object) {
-  return request(url, { params })
+  const config: RequestInit = {
+    method: 'GET',
+  }
+
+  if (params) {
+    url += '?' + qs.stringify(params)
+  }
+
+  return request(url, config)
 }
 
 async function post(url: string, data?: object) {
-  return request(url, { data })
+  const config: RequestInit = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+  }
+
+  if (data) {
+    config.body = qs.stringify(data)
+  }
+
+  return request(url, config)
 }
 
 async function postJson(url: string, json: object) {
-  return request(url, { json })
+  const config: RequestInit = {
+    method: 'POST',
+    body: JSON.stringify(json),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }
+  return request(url, config)
 }
 
 async function postForm(url: string, form: FormData) {
-  const options = {
+  const config: RequestInit = {
     method: 'POST',
     body: form,
   }
-  const response = await fetch(url, options)
-  return await response.json()
+  return request(url, config)
 }
 
 export default {
