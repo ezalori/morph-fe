@@ -1,6 +1,6 @@
 import { fileURLToPath, URL } from 'url'
 
-import { defineConfig, type UserConfigExport } from 'vite'
+import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { viteMockServe } from 'vite-plugin-mock'
@@ -9,11 +9,15 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
-export default defineConfig(() => {
-  const config: UserConfigExport = {
+export default defineConfig(({ command }) => {
+  return {
     plugins: [
       vue(),
       vueJsx(),
+      viteMockServe({
+        localEnabled: command === 'serve' && process.env.MOCK !== 'none',
+        prodEnabled: false,
+      }),
       AutoImport({
         resolvers: [ElementPlusResolver()],
       }),
@@ -26,19 +30,12 @@ export default defineConfig(() => {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
       },
     },
-  }
-
-  if (process.env.MOCK === 'none') {
-    config.server = {
+    server: {
       proxy: {
         '/api': {
           target: 'http://127.0.0.1:8081',
         },
       },
-    }
-  } else {
-    config.plugins?.push(viteMockServe())
+    },
   }
-
-  return config
 })
