@@ -1,0 +1,11 @@
+# Mac
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# JavaScript
+node_modules/
+dist/
+npm-debug.log
