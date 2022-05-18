@@ -16,7 +16,7 @@
                   <span class="username" v-text="username"></span>
                 </template>
                 <el-menu-item index="2-1">
-                  <person-outline style="margin: -3px 6px 0 0" />Logout
+                  <ion-icon name="person-outline" style="margin: -3px 6px 0 0" />Logout
                 </el-menu-item>
               </el-submenu>
             </el-menu>
@@ -72,14 +72,12 @@
   }
 </style>
 <script>
-  import { personOutline } from 'ionicons/icons'
   import Navbar from './Navbar.vue'
   import Sidebar from './Sidebar.vue'
   import api from '../common/api'
 
   export default {
     components: {
-      personOutline,
       Navbar,
       Sidebar
     },

@@ -1043,11 +1043,6 @@
   resolved "https://registry.npmmirror.com/@polka/url/-/url-1.0.0-next.21.tgz#5de5a2385a35309427f6011992b544514d559aa1"
   integrity sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==
 
-"@stencil/core@~2.12.0":
-  version "2.12.1"
-  resolved "https://registry.npmmirror.com/@stencil/core/-/core-2.12.1.tgz#92364d3e57337b8d36dd9b70cfbed2833929f22d"
-  integrity sha512-u24TZ+FEvjnZt5ZgIkLjLpUNsO6Ml3mUZqwmqk81w6RWWz75hgB5p4RFI5rvuErFeh2xvMIGo+pNdG24XUBz1A==
-
 "@types/body-parser@*", "@types/body-parser@~1.19.1":
   version "1.19.2"
   resolved "https://registry.npmmirror.com/@types/body-parser/-/body-parser-1.19.2.tgz#aea2059e28b7658639081347ac4fab3de166e6f0"
@@ -4201,13 +4196,6 @@ interpret@^2.2.0:
   version "2.2.0"
   resolved "https://registry.npmmirror.com/interpret/-/interpret-2.2.0.tgz#1a78a0b5965c40a5416d007ad6f50ad27c417df9"
   integrity sha512-Ju0Bz/cEia55xDwUWEa8+olFpCiQoypjnQySseKtmjNrnps3P+xfpUmGr90T7yjlVJmOtybRvPXhKMbHr+fWnw==
-
-ionicons@^6.0.1:
-  version "6.0.1"
-  resolved "https://registry.npmmirror.com/ionicons/-/ionicons-6.0.1.tgz#e7dc8c9d6d6cff33f3c64c095b5df645fbedd917"
-  integrity sha512-xQekOJsxH82O7oB+3F60zeRggCdND9pJ/k0E6IJDVUGGlCj5mlyFqNgxUimytKgstPGv3S+3EmCxjefvtGgWUg==
-  dependencies:
-    "@stencil/core" "~2.12.0"
 
 ipaddr.js@1.9.1:
   version "1.9.1"

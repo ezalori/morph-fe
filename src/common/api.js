@@ -1,6 +1,5 @@
 import axios from 'axios'
 import qs from 'qs'
-import { redirectUrl } from './util'
 
 import { Message } from 'element-ui';
 
@@ -33,9 +32,11 @@ api.interceptors.response
         message: (res.data && res.data.message) || '错误的请求'
       })
     } else if (res.status === 401) {
-      redirectUrl()
-    } else if (res.status === 412) {
-      redirectUrl('manual')
+      $router.push({
+        path: '/login',
+      })
+    } else {
+      // TODO
     }
 
     return Promise.reject(new Error(''))

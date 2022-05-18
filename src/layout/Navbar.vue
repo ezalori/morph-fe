@@ -31,10 +31,9 @@
 
       i {
         position: absolute;
-        top: 20px;
-        left: 15px;
-        width: 20px;
-        height: 20px;
+        top: 18px;
+        left: 12px;
+        font-size: 24px;
         color: white;
       }
 

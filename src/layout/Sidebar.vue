@@ -10,7 +10,7 @@
       @select="handleSelect"
     >
       <el-submenu index="1">
-        <template slot="title"><file-tray-outline style="margin: -3px 6px 0 0" />元数据管理</template>
+        <template slot="title"><ion-icon name="file-tray-outline" />元数据管理</template>
         <el-menu-item index="1-1">表数据管理</el-menu-item>
       </el-submenu>
     </el-menu>
@@ -27,12 +27,14 @@
     .el-menu {
       height: 100%;
       border: none;
+      ion-icon {
+        margin: -3px 6px 0 0;
+      }
     }
   }
 </style>
 <script>
   import _ from 'lodash'
-  import { fileTrayOutline } from 'ionicons/icons'
 
   const MENU = [
     {
@@ -45,10 +47,6 @@
   ]
 
   export default {
-    components: {
-      fileTrayOutline,
-    },
-
     mounted() {
       var currentRoute = $router.currentRoute.path
 
