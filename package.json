@@ -26,11 +26,11 @@
     "lodash": "^4.17.21",
     "moment": "^2.29.2",
     "normalize.css": "^5.0.0",
-    "pinia": "^2.0.13",
+    "pinia": "^2.0.14",
     "qs": "^6.9.0",
-    "vue": "^2.6.14",
+    "vue": "^2.7.0",
     "vue-cookie": "^1.1.4",
-    "vue-router": "^3.5.3",
+    "vue-router": "^3.5.4",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
@@ -55,7 +55,7 @@
     "lint-staged": "^12.4.2",
     "mini-css-extract-plugin": "^2.6.0",
     "mocker-api": "^2.9.5",
-    "vue-loader": "^15.9.8",
+    "vue-loader": "^15.10.0",
     "vue-template-compiler": "^2.6.14",
     "webpack": "^5.72.0",
     "webpack-bundle-analyzer": "^4.5.0",
@@ -63,7 +63,6 @@
     "webpack-dev-server": "^4.8.1"
   },
   "engines": {
-    "node": ">=12.18.0",
-    "yarn": "^1.22.0"
+    "node": ">=12.22.0"
   }
 }
