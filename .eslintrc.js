@@ -20,7 +20,6 @@ module.exports = {
     indent: 'off',
     semi: 'off',
     'space-before-function-paren': 'off',
-    'vue/script-indent': ['error', 2, { baseIndent: 1 }],
     'vue/multi-word-component-names': 'off',
   }
 }
