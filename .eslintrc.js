@@ -25,7 +25,6 @@ module.exports = {
   },
   rules: {
     eqeqeq: 'off',
-    indent: 'off',
     semi: 'off',
     'comma-dangle': ['error', 'only-multiline'],
     'import/first': 'off',
