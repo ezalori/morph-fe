@@ -80,12 +80,12 @@ import api from '../common/api'
 export default {
   components: {
     Navbar,
-    Sidebar
+    Sidebar,
   },
 
   data() {
     return {
-      username: this.$cookie.get('vault_username')
+      username: this.$cookie.get('vault_username'),
     }
   },
   mounted() {
@@ -104,7 +104,7 @@ export default {
         api.post('/logout').then(() => {
           this.$message({
             message: '已登出',
-            type: 'warning'
+            type: 'warning',
           })
 
           this.$cookie.delete('vault_username')
@@ -112,7 +112,7 @@ export default {
           $router.replace({ path: '/login' })
         })
       }
-    }
-  }
+    },
+  },
 }
 </script>

@@ -36,13 +36,13 @@ export default {
 
         this.$message({
           message: '登录成功！',
-          type: 'success'
+          type: 'success',
         })
 
         this.$cookie.set('vault_username', this.login.username, 365)
 
         $router.push({
-          path: '/dashboard'
+          path: '/dashboard',
         })
       }).catch(() => { this.loading = false })
     },

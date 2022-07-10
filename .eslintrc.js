@@ -25,9 +25,8 @@ module.exports = {
   },
   rules: {
     semi: ['error', 'never'],
-    'comma-dangle': ['error', 'only-multiline'],
-    'import/first': 'off',
+    'comma-dangle': ['error', 'always-multiline'],
     'space-before-function-paren': 'off',
     'vue/multi-word-component-names': 'off',
-  }
+  },
 }

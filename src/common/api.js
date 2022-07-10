@@ -8,7 +8,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 
 const api = axios.create({
   baseURL: '/api',
-  timeout: 10 * 1000 // 10 seconds
+  timeout: 10 * 1000, // 10 seconds
 })
 
 api.interceptors.request
@@ -29,7 +29,7 @@ api.interceptors.response
 
     if (res.status === 400 || res.status === 403) {
       Message({
-        message: (res.data && res.data.message) || '错误的请求'
+        message: (res.data && res.data.message) || '错误的请求',
       })
     } else if (res.status === 401) {
       $router.push({

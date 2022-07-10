@@ -109,9 +109,9 @@ export default {
       })
 
       $router.push({
-        path: '/dashboard' + path
+        path: '/dashboard' + path,
       })
-    }
-  }
+    },
+  },
 }
 </script>

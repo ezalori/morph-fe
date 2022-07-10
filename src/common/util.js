@@ -14,5 +14,5 @@ export default {
       bytes = Number(bytes).toFixed(1) + 'B'
     }
     return (negative ? '-' : '') + bytes
-  }
+  },
 }
