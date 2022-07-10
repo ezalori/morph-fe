@@ -55,7 +55,7 @@ export default {
   mounted() {
     const currentRoute = $router.currentRoute.path
 
-    let openedMenus, activedIndex;
+    let openedMenus, activedIndex
     const menuItem = _.find(MENU, (item) => _.includes(currentRoute, item.path))
     if (menuItem) {
       openedMenus = [menuItem.index]

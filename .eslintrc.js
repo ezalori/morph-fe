@@ -24,8 +24,7 @@ module.exports = {
     parser: '@typescript-eslint/parser',
   },
   rules: {
-    eqeqeq: 'off',
-    semi: 'off',
+    semi: ['error', 'never'],
     'comma-dangle': ['error', 'only-multiline'],
     'import/first': 'off',
     'space-before-function-paren': 'off',

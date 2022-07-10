@@ -90,9 +90,9 @@ export default {
   },
   mounted() {
     if (this.$cookie.get('vault_username')) {
-      console.log('已登录');
+      console.log('已登录')
     } else {
-      console.log('未登录');
+      console.log('未登录')
       $router.replace({ path: '/login' })
     }
   },

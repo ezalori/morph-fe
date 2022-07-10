@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 
-import { Message } from 'element-ui';
+import { Message } from 'element-ui'
 
 axios.defaults.baseURL = '/'
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
@@ -22,7 +22,7 @@ api.interceptors.request
 api.interceptors.response
   .use((response) => {
     // Do Nothing
-    return response;
+    return response
   }, (err) => {
     // Process error:
     const res = err.response
