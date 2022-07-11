@@ -11,16 +11,17 @@ function createDb() {
     <div class="page-metadata-db-list">
       <div style="float: right">
         <el-button-group>
-          <el-button type="success" size="small" icon="el-icon-plus" @click="createDb"
-            >新建数据库</el-button
-          >
+          <el-button type="success" size="small" icon="el-icon-plus" @click="createDb">
+            新建数据库
+          </el-button>
           <el-button
             type="success"
             size="small"
             icon="el-icon-d-arrow-left"
             @click="router.push({ path: '/dashboard/meta/table/list' })"
-            >返回</el-button
           >
+            返回
+          </el-button>
         </el-button-group>
       </div>
       <div class="page-title">管理数据库</div>

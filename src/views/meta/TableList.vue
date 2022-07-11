@@ -16,15 +16,17 @@ const message = ref(getMessage())
             size="small"
             icon="el-icon-plus"
             @click="router.push({ path: '/dashboard/meta/table/edit' })"
-            >新建表</el-button
           >
+            新建表
+          </el-button>
           <el-button
             type="success"
             size="small"
             icon="el-icon-setting"
             @click="router.push({ path: '/dashboard/meta/db/list' })"
-            >管理数据库</el-button
           >
+            管理数据库
+          </el-button>
         </el-button-group>
       </div>
       <div class="page-title">元数据管理</div>
