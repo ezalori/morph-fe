@@ -6059,7 +6059,7 @@ vue-style-loader@^4.1.0:
     hash-sum "^1.0.2"
     loader-utils "^1.0.2"
 
-vue-template-compiler@2.7.4:
+vue-template-compiler@^2.7.4:
   version "2.7.4"
   resolved "https://registry.npmmirror.com/vue-template-compiler/-/vue-template-compiler-2.7.4.tgz#5c21ff12dbd8f53ac14b42a6d89e77b55a1c5dd7"
   integrity sha512-FgaeXI80FzhtDEsixq3WBrHLWpU2gzLb2DFusm62TrmCQyETsnUp0kTLpbExrTUw7g5YOnRf+xkh73nuEX+jGQ==
@@ -6079,7 +6079,7 @@ vue-tsc@^0.38.3:
   dependencies:
     "@volar/vue-typescript" "0.38.3"
 
-vue@2.7.4:
+vue@^2.7.4:
   version "2.7.4"
   resolved "https://registry.npmmirror.com/vue/-/vue-2.7.4.tgz#f5578bd47f0cef8d4f3eb4c6bbebad47341d11fb"
   integrity sha512-8KGyyzFSj/FrKj1y7jyEpv8J4osgZx6Lk1lVzh1aP4BqsXZhATH1r0gdJNz00MMyBhK0/m2cNoPuOZ1NzeiUEw==
