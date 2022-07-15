@@ -1,4 +1,6 @@
 export default {
+  changeLocale: 'English',
+  logout: '退出登录',
   menu: {
     metadata: '元数据管理',
     metadataTableList: '表数据管理',

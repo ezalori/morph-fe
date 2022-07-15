@@ -1,4 +1,6 @@
 export default {
+  changeLocale: '中文',
+  logout: 'Logout',
   menu: {
     metadata: 'Metadata',
     metadataTableList: 'Tables',
