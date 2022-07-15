@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import { Message } from 'element-ui'
+import { useI18n } from 'vue-i18n-composable'
 import useStore from '@/stores/user'
 import { useCookie, useRouter } from '@/common/utils'
 
 const store = useStore()
 const cookie = useCookie()
 const router = useRouter()
+const { t } = useI18n()
 
 const loginForm = reactive({
   username: '',
@@ -21,7 +23,7 @@ function signIn() {
     .login(loginForm)
     .then(() => {
       loading.value = false
-      Message.success('登录成功！')
+      Message.success(t('userActions.loginSuccess', { username: store.username }) as string)
       cookie.set('vault_username', store.username, 365)
       router.push({
         path: '/dashboard',
@@ -36,10 +38,10 @@ function signIn() {
 <template>
   <div style="width: 500px; margin: 100px auto auto auto; padding-right: 120px">
     <el-form :model="loginForm" label-width="120px">
-      <el-form-item label="用户名">
+      <el-form-item :label="t('userActions.username')">
         <el-input v-model="loginForm.username"></el-input>
       </el-form-item>
-      <el-form-item label="密码">
+      <el-form-item :label="t('userActions.password')">
         <el-input
           type="password"
           v-model="loginForm.password"
@@ -47,7 +49,9 @@ function signIn() {
         ></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="signIn" :loading="loading">登录</el-button>
+        <el-button type="primary" @click="signIn" :loading="loading">
+          {{ t('userActions.login') }}
+        </el-button>
       </el-form-item>
     </el-form>
   </div>
