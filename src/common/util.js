@@ -1,3 +1,5 @@
+import { getCurrentInstance } from 'vue'
+
 export default {
   formatBytes(bytes) {
     const negative = bytes < 0
@@ -15,4 +17,9 @@ export default {
     }
     return (negative ? '-' : '') + bytes
   },
+}
+
+export function useCookie() {
+  const instance = getCurrentInstance()
+  return instance.proxy.$cookie
 }
