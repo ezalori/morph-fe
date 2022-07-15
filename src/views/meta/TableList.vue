@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n-composable'
 import router from '@/router'
+
+const { t } = useI18n()
 
 const tableList = ref([
   {
@@ -21,7 +24,7 @@ const tableList = ref([
             icon="el-icon-plus"
             @click="router.push({ path: '/dashboard/meta/table/edit' })"
           >
-            {{ $t('metadata.tableList.newTable') }}
+            {{ t('metadata.tableList.newTable') }}
           </el-button>
           <el-button
             type="success"
@@ -29,16 +32,16 @@ const tableList = ref([
             icon="el-icon-setting"
             @click="router.push({ path: '/dashboard/meta/db/list' })"
           >
-            {{ $t('metadata.tableList.manageDatabase') }}
+            {{ t('metadata.tableList.manageDatabase') }}
           </el-button>
         </el-button-group>
       </div>
-      <div class="page-title">{{ $t('metadata.tableList.title') }}</div>
+      <div class="page-title">{{ t('metadata.tableList.title') }}</div>
       <el-table :data="tableList">
         <el-table-column prop="id" label="ID"></el-table-column>
         <el-table-column
           prop="db_alias"
-          :label="$t('metadata.tableList.columns.database')"
+          :label="t('metadata.tableList.columns.database')"
         ></el-table-column>
       </el-table>
     </div>
