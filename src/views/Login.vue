@@ -2,11 +2,11 @@
 import { reactive, ref } from 'vue'
 import { Message } from 'element-ui'
 import useStore from '@/stores/user'
-import router from '@/router'
-import { useCookie } from '@/common/util'
+import { useCookie, useRouter } from '@/common/utils'
 
 const store = useStore()
 const cookie = useCookie()
+const router = useRouter()
 
 const loginForm = reactive({
   username: '',
