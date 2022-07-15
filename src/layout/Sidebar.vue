@@ -12,16 +12,16 @@
       <el-submenu index="1">
         <template slot="title">
           <i class="el-icon-receiving menu-icon"></i>
-          {{ $t('message.metadata') }}
+          {{ $t('menu.metadata') }}
         </template>
-        <el-menu-item index="1-1">表数据管理</el-menu-item>
+        <el-menu-item index="1-1">{{ $t('menu.metadataTableList') }}</el-menu-item>
       </el-submenu>
       <el-submenu index="4">
         <template slot="title">
           <i class="el-icon-connection menu-icon"></i>
-          数据抽取
+          {{ $t('menu.transfer') }}
         </template>
-        <el-menu-item index="4-1">抽取配置</el-menu-item>
+        <el-menu-item index="4-1">{{ $t('menu.transferSchemaList') }}</el-menu-item>
       </el-submenu>
     </el-menu>
   </div>
