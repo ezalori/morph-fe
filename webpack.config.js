@@ -7,7 +7,6 @@ const { VueLoaderPlugin } = require('vue-loader')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const apiMocker = require('mocker-api')
 const glob = require('glob')
-const Config = require('./src/common/config.js')
 
 const styleLoader =
   process.env.NODE_ENV === 'production' ? MiniCssExtractPlugin.loader : 'vue-style-loader'
@@ -16,7 +15,6 @@ module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: Config.prefix + '/',
     filename: '[name].dev.js',
   },
   module: {
