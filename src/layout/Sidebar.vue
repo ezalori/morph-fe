@@ -7,33 +7,33 @@ import { useRouter } from '@/common/utils'
 const router = useRouter()
 const { t } = useI18n()
 
-interface Nav {
+interface MenuItem {
   name: string
   path: string
   icon?: string
-  children?: Nav[]
+  children?: MenuItem[]
 }
 
-const navs: Nav[] = [
+const menuItems: MenuItem[] = [
   {
     name: 'menu.metadata',
-    path: '/meta/',
+    path: '/dashboard/meta/',
     icon: 'el-icon-receiving',
     children: [
       {
         name: 'menu.metadataTableList',
-        path: '/meta/tabe/list',
+        path: '/dashboard/meta/table/',
       },
     ],
   },
   {
     name: 'menu.transfer',
-    path: '/transfer/',
+    path: '/dashboard/transfer/',
     icon: 'el-icon-connection',
     children: [
       {
         name: 'menu.transferSchemaList',
-        path: '/transfer/schema/list',
+        path: '/dashboard/transfer/schema/',
       },
     ],
   },
@@ -41,17 +41,12 @@ const navs: Nav[] = [
 
 const defaultMenu = ref('')
 
-const menuIncludes = {
-  '/dashboard/meta/table/list': ['/dashboard/meta/table/', '/dashboard/meta/db/'],
-}
-
 onMounted(() => {
   const currentPath = router.currentRoute.path
 
-  const menuOpt = _(menuIncludes)
-    .flatMap((prefixes, menu) => _.map(prefixes, (prefix) => [prefix, menu]))
-    .filter((t) => _.startsWith(currentPath, t[0]))
-    .map(1)
+  const menuOpt = _(menuItems)
+    .flatMap((item) => _.map(item.children, 'path'))
+    .filter((path) => _.startsWith(currentPath, path))
     .first()
 
   defaultMenu.value = _.defaultTo(menuOpt, currentPath)
@@ -68,7 +63,7 @@ onMounted(() => {
       :unique-opened="true"
       :router="true"
     >
-      <el-submenu v-for="submenu in navs" :key="submenu.name" :index="`/dashboard${submenu.path}`">
+      <el-submenu v-for="submenu in menuItems" :key="submenu.name" :index="submenu.path">
         <template slot="title">
           <i :class="`${submenu.icon} menu-icon`"></i>
           {{ t(submenu.name) }}
@@ -76,7 +71,7 @@ onMounted(() => {
         <el-menu-item
           v-for="menuItem in submenu.children"
           :key="menuItem.name"
-          :index="`/dashboard${menuItem.path}`"
+          :index="menuItem.path"
         >
           {{ t(menuItem.name) }}
         </el-menu-item>
